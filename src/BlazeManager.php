@@ -83,7 +83,7 @@ class BlazeManager
     public function compile(string $template): string
     {
         // Protect verbatim blocks before tokenization
-        $template = app('blaze.service')->preStoreVerbatimBlocks($template);
+        $template = app(BladeService::class)->preStoreVerbatimBlocks($template);
 
         $tokens = $this->tokenizer->tokenize($template);
 
@@ -115,7 +115,7 @@ class BlazeManager
 
         $output = $this->render($ast);
 
-        app('blaze.service')->deleteTemporaryCacheDirectory();
+        app(BladeService::class)->deleteTemporaryCacheDirectory();
 
         return $output;
     }
